@@ -1,0 +1,13 @@
+[Unit]
+After=tayga@default.service
+Requires=tayga@default.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/ip link set nat64 up
+ExecStart=/usr/sbin/ip route add 192.168.255.0/24 dev nat64
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1::/48 dev nat64
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
