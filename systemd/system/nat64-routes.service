@@ -1,12 +1,18 @@
 [Unit]
-After=tayga@default.service
-Requires=tayga@default.service
+After=tayga@pp01.service tayga@tu10.service tayga@tu20.service
+Requires=tayga@pp01.service tayga@tu10.service tayga@tu20.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/ip link set nat64 up
-ExecStart=/usr/sbin/ip route add 192.168.255.0/24 dev nat64
-ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1::/48 dev nat64
+ExecStart=/usr/sbin/ip link set nat64pp01 up
+ExecStart=/usr/sbin/ip link set nat64tu10 up
+ExecStart=/usr/sbin/ip link set nat64tu20 up
+ExecStart=/usr/sbin/ip route add 192.168.1.0/24 dev nat64pp01
+ExecStart=/usr/sbin/ip route add 192.168.10.0/24 dev nat64tu10
+ExecStart=/usr/sbin/ip route add 192.168.20.0/24 dev nat64tu20
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:1::/96 dev nat64pp01
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:10::/96 dev nat64tu10
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:20::/96 dev nat64tu20
 RemainAfterExit=yes
 
 [Install]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 server=nat64.fro
-daemons="nftables radvd ndppd tayga@default"
+daemons="nftables radvd ndppd tayga@pp01 tayga@tu10 tayga@tu20"
 
 rsync -rtv \
   --exclude='.git/' \
@@ -12,6 +12,7 @@ rsync -rtv \
   --include='sysctl.d/nat64.conf' \
   --include='sysconfig/nftables.conf' \
   --include='systemd/system/***' \
+  --include='systemd/network/***' \
   --exclude='*' \
   . "$server:/etc/"
 
