@@ -13,6 +13,9 @@ ExecStart=/usr/sbin/ip route add 192.168.20.0/24 dev nat64tu20
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:1::/96 dev nat64pp01
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:10::/96 dev nat64tu10
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:20::/96 dev nat64tu20
+ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4840::/42
+ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:4700::/40
+ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700::6812:1400/119
 RemainAfterExit=yes
 
 [Install]
