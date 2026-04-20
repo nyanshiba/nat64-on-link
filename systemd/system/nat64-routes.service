@@ -1,27 +1,39 @@
 [Unit]
-After=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service
-Requires=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service
+After=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service
+Requires=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service
 
 [Service]
 Type=oneshot
+
+; nat64
+; require systemctl enable
 ExecStart=/usr/sbin/ip link set nat64pp01 up
 ExecStart=/usr/sbin/ip link set nat64pp03 up
 ExecStart=/usr/sbin/ip link set nat64tu00 up
 ExecStart=/usr/sbin/ip link set nat64tu10 up
 ExecStart=/usr/sbin/ip link set nat64tu20 up
+ExecStart=/usr/sbin/ip link set nat64warp up
+ExecStart=/usr/sbin/ip link set nat64warp2 up
 ExecStart=/usr/sbin/ip route add 192.168.1.0/24 dev nat64pp01
 ExecStart=/usr/sbin/ip route add 192.168.3.0/24 dev nat64pp03
 ExecStart=/usr/sbin/ip route add 192.168.4.0/24 dev nat64tu00
 ExecStart=/usr/sbin/ip route add 192.168.10.0/24 dev nat64tu10
 ExecStart=/usr/sbin/ip route add 192.168.20.0/24 dev nat64tu20
+ExecStart=/usr/sbin/ip route add 192.168.35.0/24 dev nat64warp
+ExecStart=/usr/sbin/ip route add 192.168.34.0/24 dev nat64warp2
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:1::/96 dev nat64pp01
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:3::/96 dev nat64pp03
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:4::/96 dev nat64tu00
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:10::/96 dev nat64tu10
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:20::/96 dev nat64tu20
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:35::/96 dev nat64warp
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:34::/96 dev nat64warp2
+
+; L-flag filtering
 ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4840::/42
 ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:4700::/40
 ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700::6812:1400/119
+
 RemainAfterExit=yes
 
 [Install]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 server=nat64.fro
-daemons="radvd ndppd tayga@pp01 tayga@pp03 tayga@tu00 tayga@tu10 tayga@tu20"
+daemons="radvd ndppd tayga@pp01 tayga@pp03 tayga@tu00 tayga@tu10 tayga@tu20 tayga@warp tayga@warp2"
 
 rsync -rtv \
   --exclude='.git/' \
