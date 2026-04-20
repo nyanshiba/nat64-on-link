@@ -1,7 +1,7 @@
 #!/bin/bash
 
 server=nat64.fro
-daemons="nftables radvd ndppd tayga@pp01 tayga@tu10 tayga@tu20"
+daemons="radvd ndppd tayga@pp01 tayga@pp03 tayga@tu00 tayga@tu10 tayga@tu20"
 
 rsync -rtv \
   --exclude='.git/' \
@@ -16,4 +16,4 @@ rsync -rtv \
   --exclude='*' \
   . "$server:/etc/"
 
-ssh -t $server "systemctl restart $daemons; sleep 1; echo $daemons: \$(systemctl is-active $daemons)"
+ssh -t $server "systemctl daemon-reload; systemctl restart $daemons; sleep 1; echo $daemons: \$(systemctl is-active $daemons)"
