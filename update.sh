@@ -1,7 +1,11 @@
 #!/bin/bash
 
 server=nat64.fro
-daemons="radvd ndppd tayga@pp01 tayga@pp03 tayga@tu00 tayga@tu10 tayga@tu20 tayga@warp tayga@warp2 tayga@warp3030 tayga@warp3031 tayga@warp3032 tayga@warp3033 tayga@warp3034 tayga@warp3035 tayga@warp3036 tayga@warp3037"
+if [ "$1" == "" ]; then
+  daemons="radvd ndppd tayga@pp01 tayga@pp03 tayga@tu00 tayga@tu10 tayga@tu20 tayga@warp tayga@warp2 tayga@warp3030 tayga@warp3031 tayga@warp3032 tayga@warp3033 tayga@warp3034 tayga@warp3035 tayga@warp3036 tayga@warp3037 tayga@mitm"
+else
+  daemons=$@
+fi
 
 rsync -rtv \
   --exclude='.git/' \

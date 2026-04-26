@@ -1,6 +1,6 @@
 [Unit]
-After=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service tayga@warp3030.service tayga@warp3031.service tayga@warp3032.service tayga@warp3033.service tayga@warp3034.service tayga@warp3035.service tayga@warp3036.service tayga@warp3037.service
-Requires=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service tayga@warp3030.service tayga@warp3031.service tayga@warp3032.service tayga@warp3033.service tayga@warp3034.service tayga@warp3035.service tayga@warp3036.service tayga@warp3037.service
+After=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service tayga@warp3030.service tayga@warp3031.service tayga@warp3032.service tayga@warp3033.service tayga@warp3034.service tayga@warp3035.service tayga@warp3036.service tayga@warp3037.service tayga@mitm.service
+Requires=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.service tayga@tu20.service tayga@warp.service tayga@warp2.service tayga@warp3030.service tayga@warp3031.service tayga@warp3032.service tayga@warp3033.service tayga@warp3034.service tayga@warp3035.service tayga@warp3036.service tayga@warp3037.service tayga@mitm.service
 
 [Service]
 Type=oneshot
@@ -22,6 +22,7 @@ ExecStart=/usr/sbin/ip link set nat64warp3035 up
 ExecStart=/usr/sbin/ip link set nat64warp3036 up
 ExecStart=/usr/sbin/ip link set nat64warp3037 up
 ExecStart=/usr/sbin/ip link set nat64warp2 up
+ExecStart=/usr/sbin/ip link set nat64mitm up
 ExecStart=/usr/sbin/ip route add 192.168.1.0/24 dev nat64pp01
 ExecStart=/usr/sbin/ip route add 192.168.3.0/24 dev nat64pp03
 ExecStart=/usr/sbin/ip route add 192.168.4.0/24 dev nat64tu00
@@ -37,6 +38,7 @@ ExecStart=/usr/sbin/ip route add 172.31.35.0/24 dev nat64warp3035
 ExecStart=/usr/sbin/ip route add 172.31.36.0/24 dev nat64warp3036
 ExecStart=/usr/sbin/ip route add 172.31.37.0/24 dev nat64warp3037
 ExecStart=/usr/sbin/ip route add 192.168.34.0/24 dev nat64warp2
+ExecStart=/usr/sbin/ip route add 192.168.80.0/24 dev nat64mitm
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:1::/96 dev nat64pp01
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:3::/96 dev nat64pp03
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:4::/96 dev nat64tu00
@@ -52,6 +54,7 @@ ExecStart=/usr/sbin/ip -6 route add 2606:4700:3035::/96 dev nat64warp3035 metric
 ExecStart=/usr/sbin/ip -6 route add 2606:4700:3036::/96 dev nat64warp3036 metric 0
 ExecStart=/usr/sbin/ip -6 route add 2606:4700:3037::/96 dev nat64warp3037 metric 0
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:34::/96 dev nat64warp2
+ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:80::/96 dev nat64mitm
 
 ; L-flag filtering
 ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4840::/42
