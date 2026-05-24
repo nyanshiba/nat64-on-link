@@ -5,6 +5,9 @@ Requires=tayga@pp01.service tayga@pp03.service tayga@tu00.service tayga@tu10.ser
 [Service]
 Type=oneshot
 
+; reduce bufferbloat
+ExecStart=/usr/sbin/tc qdisc replace dev eth0 root fq_codel
+
 ; nat64
 ; require systemctl enable
 ExecStart=/usr/sbin/ip link set nat64pp01 up
