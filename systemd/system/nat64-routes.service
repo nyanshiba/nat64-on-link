@@ -56,9 +56,19 @@ ExecStart=/usr/sbin/ip -6 route add 2606:4700:3036::/96 dev nat64warp3036 metric
 ExecStart=/usr/sbin/ip -6 route add 2606:4700:3037::/96 dev nat64warp3037 metric 0
 ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:80::/96 dev nat64mitm
 
-; L-flag filtering
+; RA RIOs filtering
+ExecStart=/usr/sbin/ip -6 route add unreachable 64:ff9b:1::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:3030::/45
 ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4840::/42
 ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:4700::/40
+ExecStart=/usr/sbin/ip -6 route add unreachable 2a06:98c1:50::/45
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:0:ccc::/47
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:119:17::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:119:35::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:119:53::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:119:76::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2620:119:fc::/48
+ExecStart=/usr/sbin/ip -6 route add unreachable 2a04:e4c0:170::/47
 ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700::6812:1400/119
 
 RemainAfterExit=yes
