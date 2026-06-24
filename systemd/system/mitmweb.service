@@ -22,7 +22,7 @@ ExecStartPre=/usr/sbin/ip tuntap add dev ${MITM_TUN} mode tun
 ExecStartPre=/usr/sbin/ip link set ${MITM_TUN} up
 
 ; start mitmweb in tun mode
-ExecStart=/usr/bin/mitmweb -vv --mode tun:${MITM_TUN} --web-host ${MITM_WEB_HOST} --web-port ${MITM_WEB_PORT} --set web_password=${MITM_WEB_PASSWORD}
+ExecStart=/usr/bin/mitmweb -vv -s /home/mitmproxy/anthropic-allowed-org-ids.py --mode tun:${MITM_TUN} --web-host ${MITM_WEB_HOST} --web-port ${MITM_WEB_PORT} --set web_password=${MITM_WEB_PASSWORD}
 
 ; wait tun interface appears, then set up routing table to capture dev nat64mitm
 ExecStartPost=/bin/bash -c 'for i in $(seq 1 60); do ip link show ${MITM_TUN} && break; sleep 1; done'

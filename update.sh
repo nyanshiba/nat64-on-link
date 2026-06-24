@@ -20,4 +20,6 @@ rsync -rtv \
   --exclude='*' \
   . "$server:/etc/"
 
+rsync -av --chown=mitmproxy:mitmproxy mitmproxy/ "$server:/home/mitmproxy/"
+
 ssh -t $server "systemctl daemon-reload; systemctl restart $daemons; sleep 1; echo $daemons: \$(systemctl is-active $daemons)"
