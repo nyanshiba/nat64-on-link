@@ -63,9 +63,7 @@ ExecStart=/usr/sbin/ip -6 route add 64:ff9b:1:80::/96 dev nat64mitm
 ExecStart=/usr/sbin/tc qdisc replace dev nat64qos root handle 1: tbf rate 512kbit burst 64kbit latency 50ms
 
 ; RA RIOs filtering
-ExecStart=/usr/sbin/ip -6 route add unreachable 64:ff9b:1::/48
-ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:3030::/45
-ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4840::/42
+ExecStart=/usr/sbin/ip -6 route add unreachable 2001:4860:4860::/112
 ExecStart=/usr/sbin/ip -6 route add unreachable 2606:4700:4700::/40
 ExecStart=/usr/sbin/ip -6 route add unreachable 2a06:98c1:50::/45
 ExecStart=/usr/sbin/ip -6 route add unreachable 2620:0:ccc::/47
