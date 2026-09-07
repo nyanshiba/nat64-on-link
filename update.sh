@@ -2,7 +2,7 @@
 
 server=nat64.fro
 if [ "$1" == "" ]; then
-  daemons="radvd tayga@pp01 tayga@pp03 tayga@tu00 tayga@qos tayga@tu10 tayga@tu20 tayga@warp tayga@warp3030 tayga@warp3031 tayga@warp3032 tayga@warp3033 tayga@warp3034 tayga@warp3035 tayga@warp3036 tayga@warp3037 tayga@mitm"
+  daemons="radvd tayga@* nat64-routes"
 else
   daemons=$@
 fi
